@@ -36,7 +36,7 @@ cts = 0.00
 tempcts = 0.00
 key = ""
 action = ""
-random.seed(86879877)
+random.seed()
 sleep(1)
 while True:
     rotation = random.randint(0, int(rots)-1)

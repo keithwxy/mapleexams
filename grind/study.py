@@ -1,5 +1,6 @@
 from pynput.keyboard import Key, Listener
 import time
+import sys
 
 
 def on_press(key):
@@ -30,7 +31,8 @@ def on_release(key):
 pressed = []
 time.sleep(1)
 print("Start")
-f = open("il3.txt", "w")
+temps = sys.argv[1] + sys.argv[2] + ".txt"
+f = open(temps, "w")
 t = time.time()
 
 with Listener(on_press=on_press, on_release=on_release) as listener:
