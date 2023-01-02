@@ -1,39 +1,25 @@
-from pynput.keyboard import Key, Listener
-import time
+import keyboard
 import sys
+import os
+import pickle
 
+if len(sys.argv) != 3:
+    print("Usage: python study.py <class> <map>")
 
-def on_press(key):
-    # Quit
-    ts = time.time() -t
-    if key == Key.esc:
-        f.close()
-        return False
-    if key in pressed:
-        return
-    pressed.append(key)
-    temp = str(ts) + " " + str(key) + " " + "PRESS\n"
-    f.write(temp)
-    #print("%f %s PRESS", ts, key)
- 
+CLASS = sys.argv[1]
+FOLDER_NAME = os.getcwd() + "/" + sys.argv[1] + sys.argv[2]
+COUNT = 0
 
-def on_release(key):
-    ts = time.time() -t
-    # Quit
-    if key == Key.esc:
-        f.close()
-        return False
-    pressed.remove(key)
-    temp = str(ts) + " " +str(key) + " " + "RELEASE\n"
-    f.write(temp)
-    #print("%f %s RELEASE", ts, key)
+# Record keys
+keys = keyboard.record(until='esc')
 
-pressed = []
-time.sleep(1)
-print("Start")
-temps = sys.argv[1] + sys.argv[2] + ".txt"
-f = open(temps, "w")
-t = time.time()
+# Save object to file
+if not os.path.exists(FOLDER_NAME+"/"):
+    os.mkdir(FOLDER_NAME)
+for files in os.listdir(FOLDER_NAME):
+    if os.path.isfile(os.path.join(FOLDER_NAME, files)):
+        COUNT += 1
 
-with Listener(on_press=on_press, on_release=on_release) as listener:
-    listener.join()
+FILE_NAME = FOLDER_NAME+"/"+CLASS+str(COUNT)
+with open(FILE_NAME, "wb") as fp:
+    pickle.dump(keys, fp)
