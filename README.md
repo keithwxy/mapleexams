@@ -24,7 +24,7 @@ python study.py <class> <map>
 > E.g python study.py il slurp
 
 ### exam.py
-Plays out rotations recorde dusing study.py
+Plays out rotations recorded using study.py
 ```
 python exam.py <class> <map>
 ```
