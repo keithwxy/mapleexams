@@ -23,9 +23,9 @@ for files in os.listdir(FOLDER_NAME):
             ROTATIONS.append(keys2)
 
 print(ROTATIONS)
-keyboard.start_recording()
-keyboard.stop_recording()
 while True:
     rand = random.randint(0, len(ROTATIONS)-1)
     print("Playing rotation %d" % rand)
+    keyboard.start_recording()
+    keyboard.stop_recording()
     keyboard.play(ROTATIONS[rand], speed_factor=1)
