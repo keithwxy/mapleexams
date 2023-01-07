@@ -1,1 +1,0 @@
-[KeyboardEvent(d down), KeyboardEvent(w down), KeyboardEvent(a down), KeyboardEvent(d up), KeyboardEvent(w up), KeyboardEvent(a up), KeyboardEvent(d down), KeyboardEvent(a down), KeyboardEvent(d up), KeyboardEvent(a up), KeyboardEvent(a down), KeyboardEvent(w down), KeyboardEvent(a up), KeyboardEvent(w up), KeyboardEvent(esc down)]
