@@ -4,6 +4,7 @@ import os
 import pickle
 import random
 import time
+import snap
 
 
 if len(sys.argv) != 3:
@@ -23,9 +24,16 @@ for files in os.listdir(FOLDER_NAME):
             ROTATIONS.append(keys2)
 
 print(ROTATIONS)
+
+anchor = snap.locate_map()
+xx = snap.locate_char(anchor.left, anchor.top)
+STARTINGX = xx.left
+STARTINGY = xx.top
+
 while True:
     rand = random.randint(0, len(ROTATIONS)-1)
     print("Playing rotation %d" % rand)
     keyboard.start_recording()
     keyboard.stop_recording()
     keyboard.play(ROTATIONS[rand], speed_factor=1)
+    snap.goto_loc(anchor.left, anchor.top, STARTINGX, STARTINGY)
