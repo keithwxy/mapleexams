@@ -30,10 +30,16 @@ xx = snap.locate_char(anchor.left, anchor.top)
 STARTINGX = xx.left
 STARTINGY = xx.top
 
+old = 99
+rand = 99
 while True:
-    rand = random.randint(0, len(ROTATIONS)-1)
+    while (rand == old):
+        rand = random.randint(0, len(ROTATIONS)-1)
+    old = rand
     print("Playing rotation %d" % rand)
     keyboard.start_recording()
     keyboard.stop_recording()
-    keyboard.play(ROTATIONS[rand], speed_factor=1)
+    tmp = random.randint(9, 10)
+    tmp /= 10
+    keyboard.play(ROTATIONS[rand], speed_factor=tmp)
     snap.goto_loc(anchor.left, anchor.top, STARTINGX, STARTINGY)

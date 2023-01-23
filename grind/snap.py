@@ -20,6 +20,23 @@ def hold(key, duration):
     sleep(duration)
     pdi.keyUp(key)
 
+def fj():
+    pdi.press("space")
+    pdi.press("space")
+
+def downjump():
+    pdi.keyDown("down")
+    small_sleep()
+    press("space")
+    small_sleep()
+    pdi.keyUp("down")
+
+def upjump():
+    press("space")
+    small_sleep()
+    pdi.keyDown("up")
+    press("space")
+    pdi.keyUp("up")
 
 def locate_map():
     return pag.locateOnScreen("img/game_window.png", confidence=0.95)
@@ -33,9 +50,20 @@ def locate_char(anchorx, anchory):
 def goto_loc(anchorx, anchory, locx, locy):
         """Bring player to designated location"""
         while True:
+            x = 0
             player_location = locate_char(anchorx, anchory)
             if player_location is None:
                 print("Attempting to locate player")
+                if x >= 0:
+                    pdi.keyDown("right")
+                    sleep(0.4)
+                    pdi.keyUp("right")
+                    x = 1
+                else: 
+                    pdi.keyDown("left")
+                    sleep(0.4)
+                    pdi.keyUp("left")
+                    x = 0
                 continue
 
             print("Moving player...")
@@ -63,40 +91,44 @@ def goto_loc(anchorx, anchory, locx, locy):
                     break
                 # Player is above target y-position.
                 elif y1 < y2:
-                    pdi.keyDown("down")
-                    small_sleep()
-                    press("space")
-                    small_sleep()
-                    pdi.keyUp("down")
+                    downjump()
                 # Player is below target y-position.
                 else:
                     if y1 - y2 > 20:
                         # Up jump
-                        press("space")
-                        small_sleep()
-                        pdi.keyDown("up")
-                        press("space")
-                        pdi.keyUp("up")
+                        #upjump()
+                        # Arcana
+                        downjump()
                     else:
                         # Climb rope
                         #press("up")
                         #press("up")
                         # Teleport
-                        pdi.keyDown("up")
-                        pdi.press("shift")
-                        pdi.keyUp("up")
+                        #pdi.keyDown("up")
+                        #pdi.press("shift")
+                        #pdi.keyUp("up")
+                        # Arcana
+                        downjump()
                 # Delay for player falling down or jumping up.
                 sleep(1)
             else:
                 # Player is to the left of target x-position.
                 if x1 < x2:
-                    pdi.keyDown("right")
+                    #pdi.keyUp("left")
+                    #pdi.keyDown("right")
+                    # Arcana
+                    downjump()
                 # Player is to the right of target x-position.
                 else:
-                    pdi.keyDown("left")
+                    #pdi.keyUp("right")
+                    #pdi.keyDown("left")
+                    # Arcana
+                    downjump()
                 if abs(x2 - x1) > 30:
                     # Teleport
-                    press("shift")
+                    #press("shift")
                     # FJ
-                    # press("space")
-                    # press("space")
+                    #press("space")
+                    #press("space")
+                    # Arcana
+                    downjump()
