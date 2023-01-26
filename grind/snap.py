@@ -38,6 +38,11 @@ def upjump():
     press("space")
     pdi.keyUp("up")
 
+def uptele():
+    pdi.keyDown("up")
+    press("shift")
+    pdi.keyUp("up")
+
 def locate_map():
     return pag.locateOnScreen("img/game_window.png", confidence=0.95)
 
@@ -97,8 +102,10 @@ def goto_loc(anchorx, anchory, locx, locy):
                     if y1 - y2 > 20:
                         # Up jump
                         #upjump()
+                        # Up tele
+                        uptele()
                         # Arcana
-                        downjump()
+                        #downjump()
                     else:
                         # Climb rope
                         #press("up")
@@ -107,28 +114,30 @@ def goto_loc(anchorx, anchory, locx, locy):
                         #pdi.keyDown("up")
                         #pdi.press("shift")
                         #pdi.keyUp("up")
+                        # Up tele
+                        uptele()
                         # Arcana
-                        downjump()
+                        #downjump()
                 # Delay for player falling down or jumping up.
                 sleep(1)
             else:
                 # Player is to the left of target x-position.
                 if x1 < x2:
-                    #pdi.keyUp("left")
-                    #pdi.keyDown("right")
+                    pdi.keyUp("left")
+                    pdi.keyDown("right")
                     # Arcana
-                    downjump()
+                    #downjump()
                 # Player is to the right of target x-position.
                 else:
-                    #pdi.keyUp("right")
-                    #pdi.keyDown("left")
+                    pdi.keyUp("right")
+                    pdi.keyDown("left")
                     # Arcana
-                    downjump()
+                    #downjump()
                 if abs(x2 - x1) > 30:
                     # Teleport
-                    #press("shift")
+                    press("shift")
                     # FJ
                     #press("space")
                     #press("space")
                     # Arcana
-                    downjump()
+                    #downjump()
